@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.12]  # Убедитесь, что версия Python совпадает с используемой в проекте
+        python-version: [3.9]  # Убедитесь, что версия Python совпадает с используемой в проекте
     steps:
       - uses: actions/checkout@v2
 
