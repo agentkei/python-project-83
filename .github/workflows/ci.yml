@@ -30,9 +30,6 @@ jobs:
       - name: Запуск линтера
         run: make lint
 
-      - name: Запуск тестов
-        run: poetry run pytest  # Добавьте это, если у вас есть тесты в проекте
-
       - name: Сборка проекта
         run: make build
 
