@@ -27,9 +27,6 @@ jobs:
       - name: Run linter
         run: |
           make lint
-      - name: Run application (Flask)
-        run: |
-          make dev  # Запуск с Flask 
       - name: Start application (Gunicorn)
         run: |
           make start  # Запуск с Gunicorn
