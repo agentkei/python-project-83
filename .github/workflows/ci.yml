@@ -1,4 +1,4 @@
-name: ci
+name: CI
 
 on:
   push:
@@ -13,20 +13,47 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.12]
+        python-version: [3.12]  # Убедитесь, что версия Python совпадает с используемой в проекте
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python ${{ matrix.python-version }}
+
+      - name: Установка Python
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
+
+      - name: Установка зависимостей
         run: |
           pip install poetry
           make install
-      - name: Run linter
+
+      - name: Запуск линтера
+        run: make lint
+
+      - name: Запуск тестов
+        run: poetry run pytest  # Добавьте это, если у вас есть тесты в проекте
+
+      - name: Сборка проекта
+        run: make build
+
+      - name: Публикация (тестовая)
+        run: make publish
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Установка Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.12
+
+      - name: Установка зависимостей
         run: |
-          make lint
-      - name: Start application (Gunicorn)
-        run: |
-          make start  # Запуск с Gunicorn
+          pip install poetry
+          poetry install
+
+      - name: Запуск Gunicorn
+        run: make start
