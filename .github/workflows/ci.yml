@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.9]  # Убедитесь, что версия Python совпадает с используемой в проекте
+        python-version: [3.11]  # Убедитесь, что версия Python совпадает с используемой в проекте
     steps:
       - uses: actions/checkout@v2
 
@@ -45,7 +45,7 @@ jobs:
       - name: Установка Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.12
+          python-version: 3.11
 
       - name: Установка зависимостей
         run: |
