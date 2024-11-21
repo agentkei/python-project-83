@@ -1,4 +1,4 @@
-from datetime import date
+# from datetime import date
 import psycopg2
 from flask import current_app
 from psycopg2.extras import DictCursor
@@ -11,8 +11,7 @@ def get_db():
 def add_to_url_list(new_url):
     conn = get_db()
     with conn.cursor(cursor_factory=DictCursor) as curs:
-        curs.execute('INSERT INTO urls (name, created_at) VALUES (%s, %s);',
-                     (new_url['name'], date.today().strftime('%Y-%m-%d')))
+        curs.execute('INSERT INTO urls (name) VALUES (%s);', (new_url['name'],))
     conn.commit()
     conn.close()
 
