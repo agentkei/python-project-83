@@ -26,3 +26,7 @@ retry:
 	poetry build
 	poetry publish --dry-run
 	python3 -m pip install --force-reinstall dist/*.whl
+
+
+build:
+	./build.sh
