@@ -1,6 +1,7 @@
 import validators
 from page_analyzer.url_formatter import formate
 
+
 def validate(url):
     errors = {}
     normalized_url = formate(url)

@@ -2,7 +2,7 @@
 
 {% block content %}
 {% if errors %}
-  {% for category, error in errors %}
+  {% for category, error in errors.items() %}
     <div class="alert {{ category }}" role="alert">{{ error }}</div>
   {% endfor %}
 {% endif %}
