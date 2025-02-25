@@ -1,12 +1,12 @@
 import validators
-
+from page_analyzer.url_formatter import formate
 
 def validate(url):
-    error = {}
-    if url is False:
-        error['without_url'] = 'URL обязателен'
-    if url is True and (not validators.url(url, public=False)
-                        or len(url) > 255):
-        error['incorrect_url'] = 'Некорректный URL'
-    else:
-        return error
+    errors = {}
+    normalized_url = formate(url)
+    if not url:
+        errors['without_url'] = 'URL обязателен'
+    if url and (not validators.url(normalized_url)
+                or len(normalized_url) > 255):
+        errors['incorrect_url'] = 'Некорректный URL'
+    return errors

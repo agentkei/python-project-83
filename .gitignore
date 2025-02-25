@@ -8,3 +8,5 @@ dist/
 .vscode/
 # Игнорировать pycache
 __pycache__/
+# Игнорировать ?
+?
